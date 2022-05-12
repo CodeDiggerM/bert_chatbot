@@ -1,5 +1,5 @@
 import torch
-from transformers.modeling_bert import BertModel
+from transformers import BertModel
 
 
 def build_encoder(model_name):
