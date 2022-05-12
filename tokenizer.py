@@ -1,5 +1,5 @@
 import torch
-from transformers.tokenization_bert_japanese import BertJapaneseTokenizer
+from transformers import BertJapaneseTokenizer
 
 
 class Tokenizer(BertJapaneseTokenizer):
