@@ -18,10 +18,15 @@ if __name__ == '__main__':
     model.load_state_dict(state_dict['model'])
     model.eval()
     model.freeze()
-
+    buff = ""
     while True:
+
         s = input('You>')
+        if s == "":
+            print('BOT>', end='')
+            text = evaluate(Config, buff, tokenizer, model, device, True)
+            buff = ""
+        else:
+            buff += s
         if s == 'q':
             break
-        print('BOT>', end='')
-        text = evaluate(Config, s, tokenizer, model, device, True)
