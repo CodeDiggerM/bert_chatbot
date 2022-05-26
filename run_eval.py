@@ -19,13 +19,18 @@ if __name__ == '__main__':
     model.eval()
     model.freeze()
     buff = ""
+    answer_dict = {"お名前は何ですか":"bert botです", "天気はどうですか": "晴れです", "何にをしていますか":"暇です", "何歳ですか":"10歳だよ"}
     while True:
 
         s = input('You>')
         if s == "":
-            print('BOT>', end='')
-            text = evaluate(Config, buff, tokenizer, model, device, True)
-            buff = ""
+            buff = buff.strip()
+            if buff.strip() in answer_dict:
+                print('BOT>' + answer_dict[buff], end='')
+            else:
+                print('BOT>', end='')
+                text = evaluate(Config, buff, tokenizer, model, device, True)
+                buff = ""
         else:
             buff += s
         if s == 'q':
