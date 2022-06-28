@@ -10,7 +10,7 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
     src_mask = torch.ones(src.size(), dtype=torch.long, device=device)
     mem = model.encode(src, src_mask)
     ys = torch.ones(1, 1).fill_(tokenizer.cls_token_id).long().to(device)
-    topn = 10
+    topn = 5
     with torch.no_grad():
         index = int(random() * topn)
         for _ in range(config.max_len - 1):
