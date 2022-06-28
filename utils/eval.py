@@ -12,13 +12,13 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
     ys = torch.ones(1, 1).fill_(tokenizer.cls_token_id).long().to(device)
     topn = 10
     with torch.no_grad():
-        index = int(random() * topn)
+        index = int(random() * 3)
         for _ in range(config.max_len - 1):
             out = model.decode(mem, src_mask,
                                ys, subsequent_mask(ys.size(1)).type_as(ys))
             prob = model.generate(out[:, -1])
             _, candidate = prob.topk(topn + 1, dim=1)
-            next_word = candidate[0, 0]
+            next_word = candidate[0, index]
             if next_word == tokenizer.sep_token_id:
                 break
             ys = torch.cat([ys, torch.ones(1, 1).type_as(ys).fill_(next_word).long()], dim=1)
