@@ -10,7 +10,7 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
     src_mask = torch.ones(src.size(), dtype=torch.long, device=device)
     mem = model.encode(src, src_mask)
     ys = torch.ones(1, 1).fill_(tokenizer.cls_token_id).long().to(device)
-    topn = 5
+    topn = 10
     with torch.no_grad():
         index = int(random() * topn)
         for _ in range(config.max_len - 1):
@@ -18,7 +18,7 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
                                ys, subsequent_mask(ys.size(1)).type_as(ys))
             prob = model.generate(out[:, -1])
             _, candidate = prob.topk(topn + 1, dim=1)
-            next_word = candidate[0, index]
+            next_word = candidate[0, 0]
             if next_word == tokenizer.sep_token_id:
                 break
             ys = torch.cat([ys, torch.ones(1, 1).type_as(ys).fill_(next_word).long()], dim=1)
