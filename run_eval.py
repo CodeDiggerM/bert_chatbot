@@ -27,7 +27,7 @@ if __name__ == '__main__':
     while True:
 
         s = input('You>')
-        if s == "#":
+        if  "#" in s:
             buff = buff.strip()[:-2]
             if buff.strip() in answer_dict:
                 print('BOT>' + answer_dict[buff], end='')
