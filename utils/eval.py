@@ -20,12 +20,12 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
             if next_word == tokenizer.sep_token_id:
                 break
             ys = torch.cat([ys, torch.ones(1, 1).type_as(ys).fill_(next_word).long()], dim=1)
-    ys = ys.view(-1).detach().cpu().numpy().tolist()[1:]
-    text = tokenizer.decode(ys)
+    t1 = ys.view(-1).detach().cpu().numpy().tolist()[1:]
+    text = tokenizer.decode(t1)
     if verbose:
         print(f'{text}')
-    ys = ys.view(-2).detach().cpu().numpy().tolist()[1:]
-    text = tokenizer.decode(ys)
+    t2 = ys.view(-2).detach().cpu().numpy().tolist()[1:]
+    text = tokenizer.decode(t2)
     if verbose:
         print(f'{text}')
     return text
