@@ -9,7 +9,7 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
     src = torch.tensor(ids, dtype=torch.long, device=device).view(1, -1)
     src_mask = torch.ones(src.size(), dtype=torch.long, device=device)
     mem = model.encode(src, src_mask)
-    ys = torch.ones(1, 1).fill_(tokenizer.cls_token_id).long().to(device)
+    ys = torch.ones(1, 2).fill_(tokenizer.cls_token_id).long().to(device)
     with torch.no_grad():
         for _ in range(config.max_len - 1):
             out = model.decode(mem, src_mask,
