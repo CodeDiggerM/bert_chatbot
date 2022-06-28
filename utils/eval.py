@@ -17,8 +17,8 @@ def evaluate(config, input_seq, tokenizer, model, device, verbose=True):
             out = model.decode(mem, src_mask,
                                ys, subsequent_mask(ys.size(1)).type_as(ys))
             prob = model.generate(out[:, -1])
-            _, candidate = prob.topk(topn, dim=1)
-            next_word = candidate[index, 0]
+            _, candidate = prob.topk(topn + 1, dim=1)
+            next_word = candidate[0, index]
             if next_word == tokenizer.sep_token_id:
                 break
             ys = torch.cat([ys, torch.ones(1, 1).type_as(ys).fill_(next_word).long()], dim=1)
