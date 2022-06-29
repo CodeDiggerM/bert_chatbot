@@ -30,6 +30,7 @@ if __name__ == '__main__':
         s = input('You>')
         if  "#" in s:
             buff = buff.strip()[:-1]
+            print(buff)
             if buff.strip() in answer_dict:
                 print('BOT>' + answer_dict[buff], end='')
             else:
