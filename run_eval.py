@@ -33,11 +33,12 @@ if __name__ == '__main__':
             buff = buff.strip()[:-1]
             if buff.strip() in answer_dict:
                 print('BOT>' + answer_dict[buff], end='')
+                print("")
                 buff = ""
             else:
                 print('BOT>', end='')
-                print("")
                 text = evaluate(Config, buff, tokenizer, model, device, True)
+                print("")
                 buff = ""
 
         if s == 'q':
