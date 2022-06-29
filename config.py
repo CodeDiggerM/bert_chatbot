@@ -4,7 +4,7 @@ class Config:
 
     n_epoch = 3
     batch_size = 64
-    max_len = 50
+    max_len = 22
     lr = 1e-3
     betas = (0.9, 0.98)
 
