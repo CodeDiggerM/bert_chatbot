@@ -36,6 +36,7 @@ if __name__ == '__main__':
                 buff = ""
             else:
                 print('BOT>', end='')
+                print("")
                 text = evaluate(Config, buff, tokenizer, model, device, True)
                 buff = ""
 
