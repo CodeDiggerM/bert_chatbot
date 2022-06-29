@@ -28,16 +28,15 @@ if __name__ == '__main__':
     while True:
 
         s = input('You>')
+        buff += s
         if  "#" in s:
             buff = buff.strip()[:-1]
-            print(buff)
             if buff.strip() in answer_dict:
                 print('BOT>' + answer_dict[buff], end='')
             else:
                 print('BOT>', end='')
                 text = evaluate(Config, buff, tokenizer, model, device, True)
                 buff = ""
-        else:
-            buff += s
+
         if s == 'q':
             break
